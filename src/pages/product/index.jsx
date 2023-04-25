@@ -1,7 +1,9 @@
 import ItemChips from "@/components/ItemChips";
 import Nav from "@/components/Nav";
+import TheamContext from "@/context/TheamContext";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import {
   MdDevices,
   MdLocationPin,
@@ -23,28 +25,36 @@ export const getStaticProps = async () => {
 };
 
 function Product({ data }) {
+  const appConfig = useContext(TheamContext);
+
   return (
     <div className="item-center flex flex-col">
       <Nav />
       <div className="productBody mt-3 flex items-start justify-center bg-slate-50 px-4 pb-4 sm:px-0 sm:pb-8">
-        <div className="mt-1 hidden items-center gap-4 sm:flex sm:basis-1/5">
-          <Image
-            className="aspect-square w-10 rounded-full"
-            src={data.user.profilePicture}
-            alt="user profile pic"
-            width={40}
-            height={40}
-          />
-          <div className="info flex flex-col items-start justify-center">
-            <div className="name font-medium">{`${data.user.firstName} ${data.user.lastName}`}</div>
-            <div className="com">{data.company.name}</div>
+        {appConfig.hasUserSection ? (
+          <div className="mt-1 hidden items-center gap-4 sm:flex sm:basis-1/5">
+            <Image
+              className="aspect-square w-10 rounded-full"
+              src={data.user.profilePicture}
+              alt="user profile pic"
+              width={40}
+              height={40}
+            />
+            <div className="info flex flex-col items-start justify-center">
+              <div className="name font-medium">{`${data.user.firstName} ${data.user.lastName}`}</div>
+              <div className="com">{data.company.name}</div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <></>
+        )}
+
         <div className="productDetails item-center flex w-full flex-col gap-4 sm:basis-1/2">
           <div className="page_path_info items-center justify-between sm:flex">
             <div className="path">{`Home > Offers > Product Topic`}</div>
             <Link
-              className="rounded-md bg-blue-900 px-3 py-1 text-white "
+              style={{ backgroundColor: `${appConfig.mainColor}` }}
+              className="rounded-md px-3 py-1 text-white "
               href={"/product/edit"}
             >
               Edit
@@ -77,19 +87,23 @@ function Product({ data }) {
                 width={200}
                 height={100}
               />
-              <div className="userInfo mt-1 flex items-center gap-4">
-                <Image
-                  className="aspect-square w-10 rounded-full"
-                  src={data.user.profilePicture}
-                  alt="user profile pic"
-                  width={40}
-                  height={40}
-                />
-                <div className="info flex flex-col items-start justify-center">
-                  <div className="name font-medium">{`${data.user.firstName} ${data.user.lastName}`}</div>
-                  <div className="com">{data.company.name}</div>
+              {appConfig.hasUserSection ? (
+                <div className="userInfo mt-1 flex items-center gap-4">
+                  <Image
+                    className="aspect-square w-10 rounded-full"
+                    src={data.user.profilePicture}
+                    alt="user profile pic"
+                    width={40}
+                    height={40}
+                  />
+                  <div className="info flex flex-col items-start justify-center">
+                    <div className="name font-medium">{`${data.user.firstName} ${data.user.lastName}`}</div>
+                    <div className="com">{data.company.name}</div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <></>
+              )}
               <div className="location mt-4 flex flex-col">
                 <div className="adderss item-center flex justify-center">
                   <MdLocationPin alt="location icon" size={"1.5rem"} />

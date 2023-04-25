@@ -16,4 +16,6 @@ export const formData = {
   investment_effort: "",
   previewPic: "",
   previewLogo: "",
+  showMess: false,
+  resMess: "",
 };

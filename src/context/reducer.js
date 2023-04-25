@@ -88,8 +88,16 @@ export const reducer = (state, action) => {
         ...state,
         investment_effort: action.payload,
       };
-    case "submit":
-      return state;
+    case "show_message": {
+      return {
+        showMess: action.payload,
+      };
+    }
+    case "res_message": {
+      return {
+        resMess: action.payload,
+      };
+    }
     default:
       return state;
   }

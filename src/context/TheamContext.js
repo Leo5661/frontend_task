@@ -1,5 +1,5 @@
 const { createContext } = require("react");
 
-const TheamContext = createContext({});
+const TheamContext = createContext();
 
 export default TheamContext;
