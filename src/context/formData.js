@@ -1,0 +1,20 @@
+export const formData = {
+    title: "",
+    type: "",
+    picture: "",
+    description: "",
+    logo: "",     
+    house: "",
+    street: "",
+    city: "",
+    country: "",
+    video: "",
+    categories: [],
+    business_models: [],
+    trlId: "",
+    trlName: "",
+    investment_effort: "",
+    previewPic: "",
+    previewLogo: "",
+    
+}
