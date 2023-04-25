@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-function ItemChips({item}) {
+function ItemChips({ item }) {
   return (
-    <div className='px-2 py-1 bg-gray-200 rounded-full text-xs '>
-        {item}
-    </div>
-  )
+    <div className="rounded-full bg-gray-200 px-2 py-1 text-xs ">{item}</div>
+  );
 }
 
-export default ItemChips
+export default ItemChips;
